@@ -28,10 +28,6 @@ export default function ProfileScreen() {
             {activeUser?.email || "Email tidak tersedia"}
           </Text>
         </View>
-
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>Mahasiswa Aktif</Text>
-        </View>
       </View>
     </View>
   );
@@ -39,7 +35,7 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, backgroundColor: "#f5f5f5" },
-  title: { fontSize: 22, fontWeight: "bold", marginBottom: 20, color: "#333" },
+  title: { fontSize: 22, fontWeight: "bold", marginTop: 35, marginBottom: 20, color: "#333" },
   profileCard: {
     padding: 30,
     backgroundColor: "white",
@@ -88,17 +84,5 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 14,
     color: "#555",
-  },
-  badge: {
-    marginTop: 20,
-    backgroundColor: "#e8f5e9",
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    borderRadius: 20,
-  },
-  badgeText: {
-    color: "#156500",
-    fontSize: 12,
-    fontWeight: "bold",
   },
 });

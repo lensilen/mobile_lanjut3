@@ -35,7 +35,7 @@ function CustomDrawerContent(props) {
             {
               text: "Keluar",
               style: "destructive",
-              onPress: () => props.onLogout(), // Memanggil fungsi dari AppNavigator
+              onPress: () => props.onLogout(), 
             },
           ]);
         }}

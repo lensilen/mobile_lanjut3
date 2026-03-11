@@ -15,7 +15,6 @@ export default function LoginScreen({ navigation, onLogin }) {
   const { loginUser } = useUser();
 
   const handleLogin = async () => {
-    // WAJIB ADA ASYNC
     const cleanedEmail = email.trim();
     const cleanedPassword = password.trim();
 
@@ -23,12 +22,10 @@ export default function LoginScreen({ navigation, onLogin }) {
       Alert.alert("Error", "Isi email dan password!");
       return;
     }
-
-    // WAJIB ADA AWAIT agar sistem nunggu data kesimpan dulu baru pindah halaman
     const success = await loginUser(cleanedEmail, cleanedPassword);
 
     if (success) {
-      onLogin(); // Pindah ke Home setelah data dipastikan aman di Context
+      onLogin();
     } else {
       Alert.alert("Gagal", "Email atau Password salah!");
     }
@@ -36,7 +33,7 @@ export default function LoginScreen({ navigation, onLogin }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>🛒 ShopApp</Text>
+      <Text style={styles.logo}>Belanjain.Id</Text>
       <Text style={styles.subtitle}>Silakan masuk ke akun kamu</Text>
 
       <TextInput

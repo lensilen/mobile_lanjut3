@@ -8,19 +8,13 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { useCart } from "../../context/CartContext"; 
-import { PRODUCTS } from "../../data/products"; // Sesuaikan path folder data kamu
+import { useCart } from "../../context/CartContext";
+import { PRODUCTS } from "../../data/products";
 
 export default function ProductDetailScreen({ route, navigation }) {
-  // Ambil productId dari params (pastikan saat navigasi, kamu mengirim productId)
   const { productId } = route.params;
-
-  // Cari data produk yang lengkap berdasarkan ID
   const product = PRODUCTS.find((item) => item.id === productId);
-
   const { addToCart } = useCart();
-
-  // Jika produk tidak ditemukan (jaga-jaga)
   if (!product) {
     return (
       <View style={styles.container}>
@@ -50,8 +44,6 @@ export default function ProductDetailScreen({ route, navigation }) {
       <View style={styles.infoCard}>
         <Text style={styles.name}>{product.name}</Text>
         <Text style={styles.price}>{product.price}</Text>
-
-        {/* Bagian Deskripsi yang Baru Ditambahkan */}
         <View style={styles.descriptionSection}>
           <Text style={styles.descTitle}>Deskripsi Produk</Text>
           <Text style={styles.descContent}>
@@ -96,7 +88,7 @@ const styles = StyleSheet.create({
   },
   mainImage: {
     width: "100%",
-    height: 300, // Sedikit diperbesar agar lebih proporsional
+    height: 300,
     resizeMode: "cover",
   },
   infoCard: {

@@ -5,7 +5,6 @@ import RegisterScreen from "../screens/auth/RegisterScreen";
 
 const Stack = createNativeStackNavigator();
 
-// Pastikan ada props { onLogin } di sini
 export default function AuthNavigator({ onLogin }) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>

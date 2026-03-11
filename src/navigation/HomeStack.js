@@ -17,7 +17,6 @@ const { width } = Dimensions.get("window");
 
 export default function HomeStack() {
   const cartContext = useCart();
-  // Gunakan optional chaining (?.) agar tidak error undefined
   const cartItems = cartContext?.cartItems || [];
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
     width: width * 0.72,
   },
   shopInfo: { flexDirection: "row", alignItems: "center" },
-  titleText: { color: "white", fontSize: 18, fontWeight: "bold" },
+  titleText: { color: "white", fontSize: 30, fontWeight: "bold" },
   cartContainer: { padding: 5 },
   badge: {
     position: "absolute",

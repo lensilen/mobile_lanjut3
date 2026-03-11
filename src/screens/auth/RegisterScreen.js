@@ -39,12 +39,12 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>🛒 ShopApp</Text>
-      <Text style={styles.title}>Buat Akun Baru</Text>
+      <Text style={styles.logo}>Belanjain.Id</Text>
+      <Text style={styles.subtitle}>Buat Akun Baru</Text>
 
       <TextInput
         style={styles.input}
-        placeholder="Nama Lengkap"
+        placeholder="Nama"
         value={name}
         onChangeText={setName}
         autoCorrect={false}
@@ -91,12 +91,11 @@ const styles = StyleSheet.create({
     color: "#156500",
     marginBottom: 10,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-    color: "#333",
+  subtitle: {
+    fontSize: 16,
+    color: "gray",
     textAlign: "center",
+    marginBottom: 30,
   },
   input: {
     backgroundColor: "#f9f9f9",

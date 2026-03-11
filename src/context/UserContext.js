@@ -5,14 +5,14 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [activeUser, setActiveUser] = useState(null);
-  const [userData, setUserData] = useState(null); // State cadangan untuk data register
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const loadInitialData = async () => {
       try {
         const storedUser = await AsyncStorage.getItem("@user_data");
         const loggedInUser = await AsyncStorage.getItem("@active_user");
-        
+
         if (storedUser) setUserData(JSON.parse(storedUser));
         if (loggedInUser) setActiveUser(JSON.parse(loggedInUser));
       } catch (e) {
@@ -24,10 +24,8 @@ export const UserProvider = ({ children }) => {
 
   const registerUser = async (data) => {
     try {
-      const newUser = { ...data, nim: "254162" };
-      // Simpan ke HP
+      const newUser = { ...data };
       await AsyncStorage.setItem("@user_data", JSON.stringify(newUser));
-      // Simpan ke State (Biar Login langsung dapet datanya)
       setUserData(newUser);
       console.log("Register Berhasil:", newUser);
     } catch (e) {
@@ -37,9 +35,8 @@ export const UserProvider = ({ children }) => {
 
   const loginUser = async (email, password) => {
     try {
-      // Cek di State dulu (cepat), kalau kosong baru cek di HP (lambat)
       let registeredUser = userData;
-      
+
       if (!registeredUser) {
         const stored = await AsyncStorage.getItem("@user_data");
         registeredUser = stored ? JSON.parse(stored) : null;
@@ -55,11 +52,14 @@ export const UserProvider = ({ children }) => {
 
       if (dbEmail === inputEmail && registeredUser.password === password) {
         setActiveUser(registeredUser);
-        await AsyncStorage.setItem("@active_user", JSON.stringify(registeredUser));
+        await AsyncStorage.setItem(
+          "@active_user",
+          JSON.stringify(registeredUser),
+        );
         console.log("Login Sukses!");
         return true;
       }
-      
+
       console.log("Gagal: Data tidak cocok", { inputEmail, dbEmail });
       return false;
     } catch (e) {
@@ -74,7 +74,9 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ activeUser, registerUser, loginUser, logoutUser }}>
+    <UserContext.Provider
+      value={{ activeUser, registerUser, loginUser, logoutUser }}
+    >
       {children}
     </UserContext.Provider>
   );
